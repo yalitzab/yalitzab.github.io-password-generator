@@ -1,68 +1,136 @@
-// Assignment code here
+//elements
+const resultEl = document.getElementById('result');
+const lengthEl = document.getElementById('length');
+const uppercaseEl = document.getElementById('uppercase');
+const lowercaseEl = document.getElementById('lowercase');
+const numbersEl = document.getElementById('numbers');
+const symbolsEl = document.getElementById('symbols');
+const passwordEl = document.getElementById('password');
 
-// Arrays
-const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
-const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
-const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
-const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
-  arrayFromLowToHigh(58, 64)
-).concat(
-  arrayFromLowToHigh(91, 96)
-).concat(
-  arrayFromLowToHigh(123, 126)
-)
+const randomFun = {
+  lower: getRandomLower,
+  upper: getRandomUpper,
+  number: getRandomNumber,
+  symbol: getRandomSymbol
+};
 
+//generate functions
+function getRandomLower(){
+  return String.fromCharCode(Math.floor(Math.random() * 26) * 97);
+}
 
-var promptCharNumber = window.prompt("Write the lenght of characters you what to generate. Write the from 8 to 128 characters.");
-var promptLowChar = window.prompt("Would you like to include lower case characters?");
-var promptUpperChar = window.prompt("Would you like to include upper case characters?");
-var promptNumericChar = window.prompt("Would you like to include numeric characters?");
-var promptSymbolChar = window.prompt("Would you like to include special characters?");
+function getRandomUpper(){
+  return String.fromCharCode(Math.floor(Math.random() * 26) * 65);
+}
 
+function getRandomNumber(){
+  return String.fromCharCode(Math.floor(Math.random() * 10) * 48);
+}
 
-
-
+function getRandomSymbol(){
+  const symbols = '!@#$%^&*()_+[]{}=<>?';
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword(characterAmount, includeUppercase, 
-  includeNumbers, includeSymbols) {
-    let charCodes = LOWERCASE_CHAR_CODES
-    if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
-    if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
-    if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
+ // Add event listener to generate button
+//  generateBtn.addEventListener("click")
+
+  // conts length = +lengthEl.value;
+  // const hasLower = lowercaseEl.promptOptions;
+  // const hasUpper = uppercaseEl.promptOptions;
+  // const hasNumber = numbersEl.promptOptions;
+  // const hasSymbol = symbolsEl.promptOptions;
+
+
+// function promptUser() {
+
+  // var txt;
+  var promptCharNumber = window.prompt("Write the length of characters you what to generate. Write the from 8 to 128 characters.");
+ 
+    // confirm lowercase
+    if (confirm("Would you like to include lower case characters?")) {
+      txt = "Password will include lowercase characters"
+    }else{
+      txt = "No lowercase included";
+    }
+    // document.getElementById("password").innerHTML =
+    // txt;
+    // }
+
+    // confirm uppercase
+    if (confirm("Would you like to include uppercase characters?")) {
+      txt = "Password will include uppercase characters"
+    }else{
+      txt = "No uppercase included";
+    }
+    // document.getElementById("password").innerHTML =
+    // txt;
+  
+    if (confirm("Would you like to include numeric characters?")) {
+      txt = "Password will include number characters"
+    }else{
+      txt = "No numbers included";
+    }
+    // document.getElementById("password").innerHTML =
+    // txt;
+  
+    if (confirm("Would you like to include symbols?")) {
+      txt = "Password will include symbols"
+    }else{
+      txt = "No symbols included";
+    }
+    // document.getElementById("password").innerHTML =
+    // txt;
+
+
+
+  // var options = {
+  //   charLength: promptCharNumber,
+  //   charLower: promptLowChar,
+  //   charUpper: promptUpperChar,
+  //   charNumber: promptNumericChar,
+  //   charSymbol: promptSymbolChar,
+
     
-    const passwordCharacters = []
-    for (let i = 0; i < characterAmount, i++) {
-      const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
-      passwordCharacters.push(string.fromCharCode(characterCode))
+  // }
+  // return options
+
+
+
+
+// // Get references to the #generate element
+// var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function generatePassword(allChar) {
+
+
+  const passwordCharacters = []
+    for (let i = 0; i < characterAmount; i++) {
+      const characterCode = allChar[Math.floor(Math.random() * 
+        allChar.length)]
+      passwordCharacters.push(string.fromAllChar(characterCode))
     }
-    return passwordCharacters.joint('')
+    return generatePassword.joint('')
   }
 
 
-  function arrayFromLowToHigh(low, high) {
-    const array = []
-    for (let i = low; i <= high; i++) {
-      array.push(i)
-    }
-    return array
-  }
 
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
 
+  // Add event listener to generate button
+  // generateBtn.addEventListener("click", promptUser);
+
+
+generateBtn.addEventListener("click", startgame);
+
+function startgame(){
+  // var options = promptUser()
+  // var passArray = createPasswordArray(options)
+  // var genPass = generatePassword(passArray)
+  // var passwordText = document.querySelector("#password");
+  // passwordText.value = genPass;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-const characterAmount = characterAmountNumber.value
-const includeUppercase = includeUppercaseElement.value
-const includeNumbers = includeNumbersElement.value
-const includeSymbolscase = includeSymbolsElement.value
-const password = generatePassword (characterAmount, includeUppercase, includeNumbers, includeSymbols)
-passwordDisplay.passwordText = password
